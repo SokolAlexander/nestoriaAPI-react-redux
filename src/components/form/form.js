@@ -1,12 +1,12 @@
 import React from 'react';
-import { submitFormAsync, inputValueChange } from '../../store/form/actions';
+import { submitFormAsync, inputValueChange } from '../../store/actions';
 import { connect } from 'react-redux';
 
 function Form(props) {
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
-            props.onSubmit();
+            !props.isFetchingData && props.onSubmit();
             }}>
             <input type="text" 
                 placeholder="search" 
@@ -19,7 +19,8 @@ function Form(props) {
 
 const mapStateToProps = function(state) {
     return {
-        value: state.inputValue
+        value: state.inputValue,
+        isFetchingData: state.isFetching
     }
 }
 

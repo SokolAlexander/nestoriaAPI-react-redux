@@ -1,5 +1,5 @@
-let  Dummy;
-export default Dummy = [
+//let  Dummy;
+export const Dummy = [
     {
       "bathroom_number": 2,
       "bedroom_number": 2,

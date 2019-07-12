@@ -3,7 +3,7 @@ import Form from './components/form/form';
 import List from './components/list/list';
 
 import {createStore, applyMiddleware} from 'redux';
-import  reducer from './store/form/reducers';
+import  reducer from './store/reducers';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import './App.css';
