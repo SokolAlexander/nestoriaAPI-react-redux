@@ -1,4 +1,5 @@
-export let Dummy = [
+let  Dummy;
+export default Dummy = [
     {
       "bathroom_number": 2,
       "bedroom_number": 2,

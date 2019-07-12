@@ -1,6 +1,8 @@
 import React from 'react';
+import { submitFormAsync, inputValueChange } from '../../store/form/actions';
+import { connect } from 'react-redux';
 
-export function Form(props) {
+function Form(props) {
     return (
         <form onSubmit={(e) => {
             e.preventDefault();
@@ -9,8 +11,21 @@ export function Form(props) {
             <input type="text" 
                 placeholder="search" 
                 value={props.value} 
-                onChange={(e) => {props.onInputChange(e.target.value)}}/>
+                onChange={(e) => {props.onInputValueChange(e.target.value)}}/>
             <input type="submit" />
             </form>
     )
 }
+
+const mapStateToProps = function(state) {
+    return {
+        value: state.inputValue
+    }
+}
+
+const mapDispatchToProps = {
+    onSubmit: submitFormAsync,
+    onInputValueChange: inputValueChange
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

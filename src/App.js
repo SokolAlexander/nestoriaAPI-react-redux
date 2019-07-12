@@ -1,9 +1,15 @@
 import React from 'react';
-import {Form} from './components/form/form';
-import {List} from './components/list/list';
-import {Dummy} from './data';
+import Form from './components/form/form';
+import List from './components/list/list';
 
+import {createStore, applyMiddleware} from 'redux';
+import  reducer from './store/form/reducers';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
 import './App.css';
+
+let store = createStore(reducer, applyMiddleware(thunk));
+
 
 class App extends React.Component {
     constructor(props) {
@@ -11,11 +17,6 @@ class App extends React.Component {
       this.handleInputChange = this.handleInputChange.bind(this);
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.handleListClick = this.handleListClick.bind(this);
-
-      this.state = {
-        inputValue: '',
-        data: []
-      }
     }
 
     handleInputChange(newValue) {
@@ -26,9 +27,6 @@ class App extends React.Component {
 
     handleFormSubmit() {
       console.log('form submitted, search for: ' + this.state.inputValue);
-      this.setState({
-        data: Dummy
-      })
     }
 
     handleListClick(target) {
@@ -44,13 +42,12 @@ class App extends React.Component {
 
     render() {
     return (
+      <Provider store={store}>
       <div className="App">
-        <Form value={this.state.inputValue} 
-          onInputChange={this.handleInputChange} 
-          onSubmit={this.handleFormSubmit}/>
-        <List data={this.state.data}
-        onListClick={this.handleListClick}/>
+        <Form />
+        <List onListClick={this.handleListClick}/>
       </div>
+      </Provider>
     );
   }
 }
