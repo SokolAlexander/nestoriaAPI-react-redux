@@ -1,35 +1,27 @@
 import React from 'react';
 import {ListHeader} from './header';
 import {ListItems} from './listItems';
-import {Spinner} from './spinner';
-import {Warning} from './warning';
-import {connect} from 'react-redux';
-import { requestNextPage } from '../../store/actions';
+import {Spinner} from './searchResults/spinner';
+import {Warning} from './searchResults/warning';
+import './css/list.css';
 
-class List extends React.Component {
-    render() {
+export function List(props) {
         return (
-            <div className="list-wrapper" onClick={(e) => this.props.onListClick(e.target)}>
-                {this.props.error && !this.props.isFetchingData && //fix this nightmare
-                    <Warning text={this.props.error}/>}
-                {this.props.isFetchingData && <Spinner />}
-                <ListHeader />
-                <ListItems data={this.props.data} onShowMoreClick={this.props.onShowMoreClick}/>
+            <div className="list-wrapper">
+                {props.error && !props.isFetchingData &&
+                    <Warning text={props.error}/>}
+
+                {!props.isFetchingData && 
+                    <ListHeader />}
+
+                {props.data[0] && 
+                    <ListItems data={props.data} 
+                    pathname={props.pathname}
+                    onFavClick={props.onFavClick}/>}
+
+                {props.isFetchingData && 
+                    <Spinner />}
+
                 </div>
         )
-    }
 }
-
-const mapStateToProps = function(state) {
-    return {
-        data: state.data,
-        isFetchingData: state.isFetching,
-        error: state.error,
-    }
-}
-
-const mapDispatchToProps = {
-    onShowMoreClick: requestNextPage
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(List);

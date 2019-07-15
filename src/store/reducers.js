@@ -1,7 +1,9 @@
+import {Dummy} from '../data';
 
 const initialState = {
     inputValue: 'chelsea',
-    data: [],
+    data: Dummy,
+    favourites: [],
     isFetching: false,
     currentPage: 0,
     totalPages: 100,
@@ -16,6 +18,24 @@ export default function reducer(state = initialState, action) {
             ...state,
             inputValue: action.payload
         }
+        case 'ADD_TO_FAVOURITES': 
+        console.log({
+            ...state,
+            favourites: state.favourites.concat(state.data[action.payload])
+        });
+        return {
+            ...state,
+            favourites: state.favourites.concat(state.data[action.payload])
+        }
+        case 'REMOVE_FROM_FAVOURITES': 
+        console.log({
+            ...state,
+            favourites: state.favourites.filter((el, index) => index !== action.payload)
+        });
+        return {
+            ...state,
+            favourites: state.favourites.filter((el, index) => index !== action.payload)
+        }
         case 'START_REQUEST': return {
             ...state,
             isFetching: true,
@@ -26,13 +46,13 @@ export default function reducer(state = initialState, action) {
         case 'FETCHED_DATA': return {
             ...state,
             data: state.data.concat(action.payload.data),
-            totalPages: action.payload.total,
+            totalPages: action.payload.totalPages,
             isFetching: false,
             error: null
         }
         case 'START_REQUEST_NEXT': return {
             ...state,
-            currentPage: ++ state.currentPage,
+            currentPage: ++state.currentPage,
             isFetching: true
         }
         case 'FETCHED_DATA_NEXT': return {
@@ -44,6 +64,10 @@ export default function reducer(state = initialState, action) {
             ...state,
             error: action.payload,
             isFetching: false
+        }
+        case 'LAST_PAGE_REACHED': return {
+            ...state,
+            isOnLastPage: true
         }
         default: return state
     }

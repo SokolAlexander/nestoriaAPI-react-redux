@@ -1,5 +1,5 @@
 //let  Dummy;
-export const Dummy = [
+let data = [
     {
       "bathroom_number": 2,
       "bedroom_number": 2,
@@ -681,4 +681,9 @@ export const Dummy = [
       "updated_in_days": 0,
       "updated_in_days_formatted": "New"
     }
-  ]
+  ];
+
+export const Dummy = data.map((el, index) => {
+    el.id = index + '';
+    return el;
+});
