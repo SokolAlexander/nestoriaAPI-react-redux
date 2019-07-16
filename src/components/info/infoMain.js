@@ -1,5 +1,6 @@
 import Info from './info';
 import {connect} from 'react-redux';
+import {toggleFavourites} from '../../store/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,7 +9,7 @@ const mapStateToProps = (state) => {
 }
 
 const  mapDispatchToProps = {
-
+    onFavClick: toggleFavourites
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Info);

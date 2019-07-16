@@ -1,11 +1,22 @@
 .App {
   text-align: center;
+  min-width: 850px;
 }
 
 .favButton {
-  position: absolute;
+  position: fixed;
+  z-index: 5900000000;
   top: 15px;
   left: 15px;
   border: 2px solid blue;
   padding: 10px;
+  background-color: beige;
+}
+
+.favButton:hover {
+  background-color: bisque;
+}
+
+.favButton:active {
+  transform: scale(0.97);
 }

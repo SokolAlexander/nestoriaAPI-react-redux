@@ -5,6 +5,7 @@
     margin: 10px;
     grid-gap: 0;
     width: 100%;
+    min-height: 75px;
 }
 
 .item-wrapper > a {
@@ -13,17 +14,26 @@
     grid-template-areas: 
     "thumb header"
     "thumb summary";
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 100px 1fr;
     /* grid-gap: 1vw; */
+}
+
+.item-wrapper a:active {
+    background-color: aliceblue;
 }
 
 .item-wrapper .thumb {
     grid-area: thumb;
-    height: 100%;
+    width: 100px;
+
 }
 
 .item-wrapper header {
+    padding: 0px 7px;
     grid-area: header;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
 }
 
 .item-wrapper .item-cotent {
@@ -31,11 +41,13 @@
 }
 
 a {
-    background-color: blueviolet;
+    color: black;
+    text-decoration: none;
+    background-color: rgba(199, 177, 219, 0.356);
 }
 
 a:hover {
-    background-color: aquamarine;
+    background-color: rgba(231, 205, 158, 0.411);
 }
 
 .toggle-fav {
@@ -43,11 +55,8 @@ a:hover {
     cursor: pointer;
 }
 
-.toggle-fav:hover {
-}
-
 .list-item-title {
-    float: left;
+    text-align: left;
 }
 
 .list-item-price {
@@ -59,9 +68,9 @@ a:hover {
     position: relative;
     /* right: 32px;
     top: 32px; */
+    opacity: 0.7;
     width: 100%;
     height: 100%;
-    opacity: 0.3;
   }
   .add:hover,
   .remove:hover {
@@ -70,30 +79,43 @@ a:hover {
   .add:before, .add:after,
   .remove:before, .remove:after {
     position: absolute;
-    /* left: 15px; */
+    left: 48%;
+    top: 25%;
     content: ' ';
-    height: 33px;
-    width: 2px;
+    height: 35px;
+    width: 4px;
     background-color: #333;
     transition: all 0.5s ease 0s;
   }
   
   .remove:before {
-    transform: rotate(45deg);
+    transform: rotate(-45deg);
   }
   .remove:after {
-    transform: rotate(-45deg);
+    transform: rotate(45deg);
   }
   .add:after {
     transform: rotate(90deg);
   }
 
 .add {
-    background-color: green;
+    background-color: rgba(97, 168, 97, 0.678);
     transition: all 0.5s ease-out 0s;
 }
 
+.add:hover {
+    background-color: rgb(102, 153, 102);
+}
+
 .remove {
-    background-color: red;
+    background-color: rgba(201, 104, 104, 0.418);
     transition: all 0.5s ease 0s;
+}
+
+.remove:hover {
+    background-color: rgba(180, 75, 75, 0.719);
+}
+
+.fav-ctrl:active {
+    transform: scale(0.9);
 }

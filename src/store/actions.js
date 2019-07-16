@@ -1,7 +1,7 @@
 //import Dummy from '../data';
 
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=buy&place_name=';
-
+const RESULTS_PER_PAGE = 20;
 
 export function inputValueChange(value) {
     return {
@@ -12,7 +12,6 @@ export function inputValueChange(value) {
 
 export function toggleFavourites(id) {
     return function(dispatch, getState) {
-
         const indexInFavs = getState().favourites.findIndex(el => el.id === id);
         const indexInData = getState().data.findIndex(el => el.id === id);
         
@@ -76,15 +75,24 @@ export function requestNextPage() {
         const url = BASE_URL + getState().lastSearched + '&page=' + getState().currentPage;
 
         getAndCheckData(url, dispatch).then((data) => {
-            if (data) { 
-                dispatch({
-                    type: 'FETCHED_DATA_NEXT',
-                    payload: data.listings
-                })
-            }
+            if (data) {
+                data.listings = data.listings.map((el, index) => {
+                    return {
+                        ...el,
+                        id: `${getState().lastSearched}_
+                            ${Date.now()}_
+                            ${RESULTS_PER_PAGE*getState().currentPage + index}`,
+                        indexInFavs: -1
+                    }
+                });
+            dispatch({
+                type: 'FETCHED_DATA_NEXT',
+                payload: data.listings
+            })}
         });
-    };
+    }
 }
+
 
 function getAndCheckData(url, dispatch) {
     return fetch(url)
