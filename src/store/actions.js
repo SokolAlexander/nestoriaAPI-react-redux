@@ -10,22 +10,22 @@ export function inputValueChange(value) {
     }
 }
 
-export function toggleFavourites(id, index) {
+export function toggleFavourites(id) {
     return function(dispatch, getState) {
-        const data = getState().data;
-        const favs = getState().favourites;
 
-        const indexInFavs = favs.findIndex((el) => el.id === id);
+        const indexInFavs = getState().favourites.findIndex(el => el.id === id);
+        const indexInData = getState().data.findIndex(el => el.id === id);
         
         if (indexInFavs + 1) {
             dispatch({
                 type: 'REMOVE_FROM_FAVOURITES',
-                payload: data[index].indexInFavs
-            }); return
+                payload: indexInFavs
+            }); 
+            return;
         };
         dispatch({
             type: 'ADD_TO_FAVOURITES',
-            payload: index
+            payload: indexInData
         })
     }
 }
@@ -46,7 +46,7 @@ export function submitFormAsync() {
                     return {
                         ...el,
                         id: `${placeName}_${Date.now()}_${index}`,
-                        indexInFavs: false
+                        indexInFavs: -1
                     }
                 });
                 dispatch({

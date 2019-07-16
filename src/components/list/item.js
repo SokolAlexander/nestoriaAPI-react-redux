@@ -5,7 +5,8 @@ import './css/item.css';
 
 export function Item(props) {
     const path = props.pathname.slice(1) || '';
-    console.log(props.toggleFavClassName)
+    const favCtrlClassName = props.data.indexInFavs + 1 || props.data.indexInData + 1 ?
+        'remove' : 'add';
     return (
         <div className="item-wrapper">
             <Link to={`${path}/info/${props.index}`}>
@@ -18,9 +19,9 @@ export function Item(props) {
                 {props.data.summary}
             </div>
             </Link>
-            <div className='toggle-fav' onClick={() => props.onFavClick(props.data.id, props.index)}>
-                <div className={props.toggleFavClassName} onClick={(e) => {
-                    e.target.classList.toggle('transform-plus')}}>
+            <div className='toggle-fav' onClick={() => props.onFavClick(props.data.id)}>
+                <div className={favCtrlClassName + ' fav-ctrl'} 
+                    onClick={(e) => {e.target.classList.toggle('fav-ctrl')}}>
                     </div>
                 </div>
             </div>

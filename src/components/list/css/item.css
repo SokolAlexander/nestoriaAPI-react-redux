@@ -87,20 +87,12 @@ a:hover {
   .add:after {
     transform: rotate(90deg);
   }
-  
-  .transform-plus:after {
-    transform: rotate(45deg);
-  }
-  .transform-plus:before {
-      transform: rotate(-45deg);
-  }
 
 .add {
     background-color: green;
     transition: all 0.5s ease-out 0s;
 }
 
-.add.transform-plus,
 .remove {
     background-color: red;
     transition: all 0.5s ease 0s;

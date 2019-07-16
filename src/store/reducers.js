@@ -18,7 +18,7 @@ export default function reducer(state = initialState, action) {
             ...state,
             inputValue: action.payload
         }
-        case 'ADD_TO_FAVOURITES': 
+        case 'ADD_TO_FAVOURITES':
         return {
             ...state,
             data: state.data.map((el,index) => {
@@ -34,6 +34,11 @@ export default function reducer(state = initialState, action) {
         case 'REMOVE_FROM_FAVOURITES':
         return {
             ...state,
+            data: state.data.map((el, index) => {
+                return state.favourites[action.payload].indexInData === index ?
+                {...el, indexInFavs: -1} :
+                el
+            }),
             favourites: state.favourites.filter((el, index) => index !== action.payload)
         }
         case 'START_REQUEST': return {
