@@ -4,6 +4,7 @@ const initialState = {
     inputValue: 'chelsea',
     data: Dummy,
     favourites: [],
+    infoItem: {},
     isFetching: false,
     currentPage: 0,
     totalPages: 100,
@@ -18,9 +19,13 @@ export default function reducer(state = initialState, action) {
             ...state,
             inputValue: action.payload
         }
-        case 'ADD_TO_FAVOURITES':
-        return {
+        case 'ADD_ITEM_INFO': return {
             ...state,
+            infoItem: action.payload
+        }
+        case 'ADD_TO_FAVOURITES': return {
+            ...state,
+            infoItem: {...state.infoItem, indexInFavs: state.favourites.length},//this might not work with BACK button, or opening links through url instead of clicking on link
             data: state.data.map((el,index) => {
                 return index === action.payload ?
                 {...el, indexInFavs: state.favourites.length} :
@@ -34,6 +39,7 @@ export default function reducer(state = initialState, action) {
         case 'REMOVE_FROM_FAVOURITES':
         return {
             ...state,
+            infoItem: {...state.infoItem, indexInFavs: -1},
             data: state.data.map((el, index) => {
                 return state.favourites[action.payload].indexInData === index ?
                 {...el, indexInFavs: -1} :

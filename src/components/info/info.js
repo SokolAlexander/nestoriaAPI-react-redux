@@ -1,35 +1,38 @@
 import React from 'react';
 import {FavCtrl} from '../list/favCtrl';
+import {Details} from './details';
+import {toggleFavourites} from '../../store/actions';
+import {connect} from 'react-redux';
 
-export default function Info(props) {
-    const item = props.data[props.match.params.index];
+function Info(props) {
+    const item = props.data;
     const favCtrlClassName = item.indexInFavs + 1 || item.indexInData + 1 ?
         'remove' : 'add';
     return (
         <div className='info-window'>
             <header>{item.title}   {item.price_formatted}</header>
             <img src={item.img_url} alt={item.title}/>
-                <div className="details">
-                    <div className="keywords">
-                        {item.keywords}
-                    </div>
-                    <ul>
-                        <li>Bathrooms: {item.bathroom_number}</li>
-                        <li>Bedrooms: {item.bedroom_number}</li>
-                    </ul>
-                    <div className="lister">
-                        Sent by <a 
-                            href={item.lister_url}>{item.lister_name || 'somebody'}
-                            </a> 
-                    </div>
-                </div>
-                <div>
-                    {item.summary}
-                    </div>
-                <div>
+            <Details item={item}/>
+                                <div>
                     <FavCtrl favCtrlClassName={favCtrlClassName}
-                        onFavClick={() => props.onFavClick(item.id)}/>
+                        onFavClick={() => {
+                            console.log(item.indexInFavs);
+                            props.onFavClick(item.id);
+                            console.log(item.indexInFavs);}}/>
                     </div>
             </div>
     )
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        data: state.infoItem
+    }
+}
+
+const  mapDispatchToProps = {
+    onFavClick: toggleFavourites
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Info);

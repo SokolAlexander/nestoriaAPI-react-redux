@@ -11,14 +11,11 @@ export function List(props) {
                 {props.error && !props.isFetchingData &&
                     <Warning text={props.error}/>}
 
-                {!props.isFetchingData && 
-                    <ListHeader />}
-
                 {props.data[0] && 
                     <ListItems data={props.data} 
                     pathname={props.pathname}
                     onFavClick={props.onFavClick}
-                    toggleFavClassName={props.toggleFavClassName}/>}
+                    handleItemClick={props.handleItemClick}/>}
 
                 {props.isFetchingData && 
                     <Spinner />}

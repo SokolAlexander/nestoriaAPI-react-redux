@@ -6,13 +6,12 @@ import './css/item.css';
 
 export function Item(props) {
     const path = props.pathname.slice(1) || '';
+    const index = props.data.indexInFavs + 1 ? props.data.indexInFavs : props.index;
     const favCtrlClassName = props.data.indexInFavs + 1 || props.data.indexInData + 1 ?
         'remove' : 'add';
     return (
         <div className="item-wrapper">
-            <Link to={`/info/${props.data.indexInData + 1 ?
-                props.data.indexInData :
-                props.index}`}>
+            <Link to={'/info/'} onClick={() => props.handleItemClick(props.data.id)}>
             <header className="list-item-header">
                 <div className="list-item-title">{props.data.title}</div>
                 <div className="list-item-price">{props.data.price_formatted}</div>
@@ -22,7 +21,8 @@ export function Item(props) {
                 {props.data.summary}
             </div>
             </Link>
-            <FavCtrl favCtrlClassName={favCtrlClassName} onFavClick={() => props.onFavClick(props.data.id)}/>
+            <FavCtrl favCtrlClassName={favCtrlClassName} 
+                onFavClick={() => props.onFavClick(props.data.id)}/>
             
             </div>
     )

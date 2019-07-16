@@ -1,6 +1,6 @@
 import {List} from './list';
 import {connect} from 'react-redux';
-import {requestNextPage, toggleFavourites} from '../../store/actions';
+import {requestNextPage, toggleFavourites, addItemInfo} from '../../store/actions';
 import {ShowMoreButton} from './searchResults/showMoreButton';
 import React from 'react';
 
@@ -28,7 +28,8 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = {
     onShowMoreClick: requestNextPage,
-    onFavClick: toggleFavourites
+    onFavClick: toggleFavourites,
+    handleItemClick: addItemInfo
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

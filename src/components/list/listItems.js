@@ -12,7 +12,7 @@ export function ListItems(props) {
                 index={index} 
                 pathname={props.pathname}
                 onFavClick={props.onFavClick}
-                toggleFavClassName={props.toggleFavClassName}/>
+                handleItemClick={props.handleItemClick}/>
             )
         })
     }

@@ -29,6 +29,19 @@ export function toggleFavourites(id) {
     }
 }
 
+export function addItemInfo(id) {
+    return function(dispatch, getState) {
+        debugger
+        const infoItem = getState().data.find(el => el.id === id) ||
+            getState.favourites.find(el => el.id === id);
+            dispatch({
+                    type: 'ADD_ITEM_INFO',
+                    payload: infoItem
+                }); 
+            
+    }
+}
+
 export function submitFormAsync() {
     return function(dispatch, getState) {
         const placeName = getState().inputValue;

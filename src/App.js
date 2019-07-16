@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from './components/form/form';
-import InfoMain from './components/info/infoMain';
-import InfoFav from './components/info/infoFav';
+import Info from './components/info/info';
 import Favourites from './components/list/favourites';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import {createStore, applyMiddleware} from 'redux';
@@ -39,9 +38,14 @@ class App extends React.Component {
               )
               }} />
 
-          <Route path="/favourites/info/:index" component={InfoFav} />
-          
-          <Route path="/info/:index" component={InfoMain} />
+          <Route path="/info/" render={(props) => {
+            return (
+              <>
+              <Link to='/' className='homeButton favButton'>Home</Link>
+              <Info />
+              </>
+            )
+          }} />
           </Router>
       </div>
       </Provider>
