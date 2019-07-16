@@ -1,10 +1,13 @@
 import React from 'react';
 import { submitFormAsync, inputValueChange } from '../../store/actions';
 import { connect } from 'react-redux';
+import './form.css';
 
 function Form(props) {
     return (
-        <form onSubmit={(e) => {
+        <div className="form-wrapper">
+        <form className="form" 
+            onSubmit={(e) => {
             e.preventDefault();
             !props.isFetchingData && props.onSubmit();
             }}>
@@ -14,6 +17,7 @@ function Form(props) {
                 onChange={(e) => {props.onInputValueChange(e.target.value)}}/>
             <input type="submit" />
             </form>
+            </div>
     )
 }
 

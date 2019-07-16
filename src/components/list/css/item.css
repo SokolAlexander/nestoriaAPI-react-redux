@@ -1,0 +1,107 @@
+.item-wrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 93% 7%;
+    margin: 10px;
+    grid-gap: 0;
+    width: 100%;
+}
+
+.item-wrapper > a {
+    border: 1px solid grey;
+    display: grid;
+    grid-template-areas: 
+    "thumb header"
+    "thumb summary";
+    grid-template-columns: 10% 90%;
+    /* grid-gap: 1vw; */
+}
+
+.item-wrapper .thumb {
+    grid-area: thumb;
+    height: 100%;
+}
+
+.item-wrapper header {
+    grid-area: header;
+}
+
+.item-wrapper .item-cotent {
+    grid-area: summary;
+}
+
+a {
+    background-color: blueviolet;
+}
+
+a:hover {
+    background-color: aquamarine;
+}
+
+.toggle-fav {
+    height: 100%;
+    cursor: pointer;
+}
+
+.toggle-fav:hover {
+}
+
+.list-item-title {
+    float: left;
+}
+
+.list-item-price {
+    float: right;
+}
+
+.remove,
+.add {
+    position: relative;
+    /* right: 32px;
+    top: 32px; */
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
+  .add:hover,
+  .remove:hover {
+    opacity: 1;
+  }
+  .add:before, .add:after,
+  .remove:before, .remove:after {
+    position: absolute;
+    /* left: 15px; */
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+    transition: all 0.5s ease 0s;
+  }
+  
+  .remove:before {
+    transform: rotate(45deg);
+  }
+  .remove:after {
+    transform: rotate(-45deg);
+  }
+  .add:after {
+    transform: rotate(90deg);
+  }
+  
+  .transform-plus:after {
+    transform: rotate(45deg);
+  }
+  .transform-plus:before {
+      transform: rotate(-45deg);
+  }
+
+.add {
+    background-color: green;
+    transition: all 0.5s ease-out 0s;
+}
+
+.add.transform-plus,
+.remove {
+    background-color: red;
+    transition: all 0.5s ease 0s;
+}

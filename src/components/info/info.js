@@ -5,7 +5,7 @@ export default function Info(props) {
     return (
         <div className='info-window'>
             <header>{item.title}   {item.price_formatted}</header>
-            <img src={item.img_url} alt='image'/>
+            <img src={item.img_url} alt={item.title}/>
                 <div>
                     {item.summary}
                     </div>

@@ -17,7 +17,8 @@ export function List(props) {
                 {props.data[0] && 
                     <ListItems data={props.data} 
                     pathname={props.pathname}
-                    onFavClick={props.onFavClick}/>}
+                    onFavClick={props.onFavClick}
+                    toggleFavClassName={props.toggleFavClassName}/>}
 
                 {props.isFetchingData && 
                     <Spinner />}

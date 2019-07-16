@@ -4,7 +4,7 @@ import {toggleFavourites} from '../../store/actions';
 
 const mapStateToProps = (state) => {
     return {
-        data: state.favourites
+        data: state.favourites,
     }
 }
 

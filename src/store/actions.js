@@ -10,7 +10,7 @@ export function inputValueChange(value) {
     }
 }
 
-export function toggleFavourites(id) {
+export function toggleFavourites(id, index) {
     return function(dispatch, getState) {
         const data = getState().data;
         const favs = getState().favourites;
@@ -20,12 +20,12 @@ export function toggleFavourites(id) {
         if (indexInFavs + 1) {
             dispatch({
                 type: 'REMOVE_FROM_FAVOURITES',
-                payload: indexInFavs
+                payload: data[index].indexInFavs
             }); return
-        }
+        };
         dispatch({
             type: 'ADD_TO_FAVOURITES',
-            payload: data.findIndex((el) => el.id === id)
+            payload: index
         })
     }
 }
@@ -45,7 +45,8 @@ export function submitFormAsync() {
                 data.listings = data.listings.map((el, index) => {
                     return {
                         ...el,
-                        id: `${placeName}_${Date.now()}_${index}`
+                        id: `${placeName}_${Date.now()}_${index}`,
+                        indexInFavs: false
                     }
                 });
                 dispatch({

@@ -25,7 +25,7 @@ class App extends React.Component {
               <>
                 <Link to="/favourites" className="favButton">Open Favourites</Link>
                 <Form />
-                <SearchResults pathname={props.location.pathname}/>
+                <SearchResults pathname={props.location.pathname} toggleFavClassName='add'/>
                 </>
               )
             }} />
@@ -34,7 +34,7 @@ class App extends React.Component {
               return (
                 <>
                   <Link to='/' className='favButton'>Close Favourites</Link>
-                  <Favourites pathname={props.location.pathname}/>
+                  <Favourites pathname={props.location.pathname} toggleFavClassName='remove'/>
                 </>
               )
               }} />

@@ -19,19 +19,19 @@ export default function reducer(state = initialState, action) {
             inputValue: action.payload
         }
         case 'ADD_TO_FAVOURITES': 
-        console.log({
-            ...state,
-            favourites: state.favourites.concat(state.data[action.payload])
-        });
         return {
             ...state,
-            favourites: state.favourites.concat(state.data[action.payload])
+            data: state.data.map((el,index) => {
+                return index === action.payload ?
+                {...el, indexInFavs: state.favourites.length} :
+                el; 
+            }),
+            favourites: state.favourites.concat({
+                ...state.data[action.payload],
+                indexInData: action.payload
+            })
         }
-        case 'REMOVE_FROM_FAVOURITES': 
-        console.log({
-            ...state,
-            favourites: state.favourites.filter((el, index) => index !== action.payload)
-        });
+        case 'REMOVE_FROM_FAVOURITES':
         return {
             ...state,
             favourites: state.favourites.filter((el, index) => index !== action.payload)
