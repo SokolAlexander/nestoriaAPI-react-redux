@@ -4,19 +4,29 @@ import {requestNextPage, toggleFavourites, addItemInfo} from '../../store/action
 import {ShowMoreButton} from './searchResults/showMoreButton';
 import React from 'react';
 
+/**
+ * render a list of search res with showMoreButton
+ * @param {props} props
+ * @return {ReactComponent}
+ */
 function SearchResults(props) {
     return (
         <>
-        <List {...props} />        
+        <List {...props} />
         {!props.isFetchingData && props.data[0] &&
-                    <ShowMoreButton 
+                    <ShowMoreButton
                     onShowMoreClick={props.onShowMoreClick}
                     isOnLastPage={props.isOnLastPage}/>}
 
         </>
     )
 }
- 
+
+/**
+ * translates redux state data to data props
+ * @param {ReduxState} state
+ * @return {Object}
+ */
 const mapStateToProps = function(state) {
     return {
         data: state.data,

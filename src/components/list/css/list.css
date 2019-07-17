@@ -1,3 +1,7 @@
+.list-wrapper {
+    margin-top: 20px;
+}
+
 .list-items-wrapper {
     display: flex;
     flex-direction: column;

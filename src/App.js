@@ -10,47 +10,48 @@ import thunk from 'redux-thunk';
 import './App.css';
 import SearchResults from './components/list/searchResults';
 
-let store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(reducer, applyMiddleware(thunk));
 
-
-class App extends React.Component {
-    render() {
-    return (
-      <Provider store={store}>
-      <div className="App">
-        <Router>
-          <Route exact={true} path="/" render={(props) => {
-            return (
-              <>
-                <Link to="/favourites" className="favButton">Open Favourites</Link>
-                <Form />
-                <SearchResults pathname={props.location.pathname} toggleFavClassName='add'/>
-                </>
-              )
-            }} />
-          
-          <Route exact={true} path="/favourites" render={(props) => {
-              return (
-                <>
-                  <Link to='/' className='favButton'>Close Favourites</Link>
-                  <Favourites pathname={props.location.pathname} toggleFavClassName='remove'/>
-                </>
-              )
-              }} />
-
-          <Route path="/info/" render={(props) => {
-            return (
-              <>
-              <Link to='/' className='homeButton favButton'>Home</Link>
-              <Info />
+/**
+ * function for rendering an App
+ * @return {ReactComponent}
+ */
+function App() {
+  return (
+    <Provider store={store}>
+    <div className="App">
+      <Router>
+        <Route exact={true} path="/" render={(props) => {
+          return (
+            <>
+              <Link to="/favourites" className="favButton">Open Favourites</Link>
+              <Form />
+              <SearchResults pathname={props.location.pathname} toggleFavClassName='add'/>
               </>
             )
           }} />
-          </Router>
-      </div>
-      </Provider>
-    );
-  }
+
+        <Route exact={true} path="/favourites" render={(props) => {
+            return (
+              <>
+                <Link to='/' className='favButton'>Close Favourites</Link>
+                <Favourites pathname={props.location.pathname} toggleFavClassName='remove'/>
+              </>
+            )
+            }} />
+
+        <Route path="/info/" render={(props) => {
+          return (
+            <>
+            <Link to='/' className='homeButton favButton'>Home</Link>
+            <Info />
+            </>
+          )
+        }} />
+        </Router>
+    </div>
+    </Provider>
+  );
 }
 
 export default App;

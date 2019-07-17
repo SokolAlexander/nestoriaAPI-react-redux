@@ -1,5 +1,11 @@
 import React from 'react';
+import './css/itemHeader.css';
 
+/**
+ * render an item header for info window or item list
+ * @param {props} props 
+ * @return {ReactComponent}
+ */
 export function ItemHeader(props) {
     return (
         <header className="item-header">

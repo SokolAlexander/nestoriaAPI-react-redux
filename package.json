@@ -15,10 +15,57 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lintfix": "./node_modules/.bin/eslint --fix"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "require-jsdoc": [
+        "error",
+        {
+          "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true,
+            "ArrowFunctionExpression": false,
+            "FunctionExpression": false
+          }
+        }
+      ],
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "any",
+          "ignoreReadBeforeAssign": false
+        }
+      ],
+      "valid-jsdoc": [
+        "error",
+        {
+          "prefer": {
+            "returns": "return"
+          },
+          "preferType": {
+            "object": "Object",
+            "string": "String",
+            "array": "Array",
+            "number": "Number",
+            "boolean": "Boolean"
+          },
+          "requireReturn": false,
+          "matchDescription": ".+",
+          "requireParamDescription": false,
+          "requireReturnDescription": false
+        }
+      ],
+      "no-trailing-spaces": [
+        "error",
+        {
+          "ignoreComments": true
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [

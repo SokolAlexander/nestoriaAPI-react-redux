@@ -1,5 +1,5 @@
 //let  Dummy;
-let data = [
+const data = [
     {
       "bathroom_number": 2,
       "bedroom_number": 2,

@@ -1,0 +1,6 @@
+.item-header {
+    padding: 0px 7px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+}

@@ -12,6 +12,12 @@ const initialState = {
     error: null
 }
 
+/**
+ * Reducer for a ReduxStore
+ * @param {ReduxState} state 
+ * @param {ReduxAction} action
+ * @return {Object}
+ */
 export default function reducer(state = initialState, action) {
     console.log(action);
     switch (action.type) {
@@ -29,7 +35,7 @@ export default function reducer(state = initialState, action) {
             data: state.data.map((el,index) => {
                 return index === action.payload ?
                 {...el, indexInFavs: state.favourites.length} :
-                el; 
+                el;
             }),
             favourites: state.favourites.concat({
                 ...state.data[action.payload],

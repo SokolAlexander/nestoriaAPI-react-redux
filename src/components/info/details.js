@@ -1,6 +1,10 @@
 import React from 'react';
 
-
+/**
+ * renders a fragment with detailed info of item
+ * @param {props} props 
+ * @return {ReactComponent}
+ */
 export function Details(props) {
     return (
         <>
@@ -13,9 +17,9 @@ export function Details(props) {
                 <li>Bedrooms: {props.item.bedroom_number}</li>
             </ul>
             <div className="lister">
-                Sent by <a 
+                Sent by <a
                     href={props.item.lister_url}>{props.item.lister_name || 'somebody'}
-                    </a> 
+                    </a>
             </div>
         </div>
         <div>

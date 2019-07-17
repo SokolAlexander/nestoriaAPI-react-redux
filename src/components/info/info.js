@@ -6,6 +6,11 @@ import {toggleFavourites} from '../../store/actions';
 import {connect} from 'react-redux';
 import './info.css';
 
+/**
+ * renders info window
+ * @param {props} props 
+ * @return {ReactComponent}
+ */
 function Info(props) {
     const item = props.data;
     const favCtrlClassName = item.indexInFavs + 1 || item.indexInData + 1 ?
@@ -26,7 +31,11 @@ function Info(props) {
     )
 }
 
-
+/**
+ * translates redux state to props
+ * @param {ReduxState} state
+ * @return {Object}
+ */
 const mapStateToProps = (state) => {
     return {
         data: state.infoItem
