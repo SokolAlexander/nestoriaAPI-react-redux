@@ -13,10 +13,16 @@
   background-color: beige;
 }
 
-.favButton:hover {
-  background-color: bisque;
-}
-
 .favButton:active {
   transform: scale(0.97);
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  background-color: rgba(199, 177, 219, 0.356);
+}
+
+a:hover {
+  background-color: rgb(245, 231, 205);
 }

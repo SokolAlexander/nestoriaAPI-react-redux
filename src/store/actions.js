@@ -31,9 +31,8 @@ export function toggleFavourites(id) {
 
 export function addItemInfo(id) {
     return function(dispatch, getState) {
-        debugger
         const infoItem = getState().data.find(el => el.id === id) ||
-            getState.favourites.find(el => el.id === id);
+            getState().favourites.find(el => el.id === id);
             dispatch({
                     type: 'ADD_ITEM_INFO',
                     payload: infoItem
@@ -122,5 +121,10 @@ function getAndCheckData(url, dispatch) {
         }
         return result;
         }    
-    );
+    ).catch(e => {
+        dispatch({
+            type: 'RESPONSE_ERROR',
+            payload: e.toString()
+        }); return null
+    });
 }

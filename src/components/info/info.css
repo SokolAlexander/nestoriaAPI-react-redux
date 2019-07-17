@@ -1,0 +1,35 @@
+.info-window {
+    min-width: 500px;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-right: 1px  solid rgba(128, 128, 128, 0.363);
+}
+
+.info-window img {
+    width: 400px;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.info-window header {
+    font-weight: bolder;
+    background-color: rgba(240, 248, 255, 0.664);
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.info-window ul {
+    list-style: none;
+}
+
+.info-window .fav-ctrl {
+    margin-top: 15px;
+    height: 70px;
+}
+

@@ -1,4 +1,11 @@
 .show-more {
-    height: 50px;
-    border: 1px solid black;
+    /* height: 50px; */
+    border-top: 1px solid black;
+    cursor: pointer;
+    padding: 20px;
+    font-weight: bolder;
+}
+
+.show-more:hover {
+    background-color: rgb(245, 231, 205);
 }

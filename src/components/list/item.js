@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {Thumb} from './thumb';
 import {FavCtrl} from './favCtrl';
 import './css/item.css';
+import { ItemHeader } from './itemHeader';
 
 export function Item(props) {
     const path = props.pathname.slice(1) || '';
@@ -12,10 +13,7 @@ export function Item(props) {
     return (
         <div className="item-wrapper">
             <Link to={'/info/'} onClick={() => props.handleItemClick(props.data.id)}>
-            <header className="list-item-header">
-                <div className="list-item-title">{props.data.title}</div>
-                <div className="list-item-price">{props.data.price_formatted}</div>
-            </header>
+            <ItemHeader title={props.data.title} price={props.data.price_formatted} />
             <Thumb src={props.data.thumb_url}/>
             <div className="item-content">
                 {props.data.summary}

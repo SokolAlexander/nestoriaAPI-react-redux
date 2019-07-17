@@ -10,12 +10,12 @@
 
 .item-wrapper > a {
     border: 1px solid grey;
+    border-right: 0;
     display: grid;
     grid-template-areas: 
     "thumb header"
     "thumb summary";
     grid-template-columns: 100px 1fr;
-    /* grid-gap: 1vw; */
 }
 
 .item-wrapper a:active {
@@ -36,18 +36,10 @@
     justify-content: space-between;
 }
 
-.item-wrapper .item-cotent {
+.item-wrapper .item-content {
     grid-area: summary;
-}
-
-a {
-    color: black;
-    text-decoration: none;
-    background-color: rgba(199, 177, 219, 0.356);
-}
-
-a:hover {
-    background-color: rgba(231, 205, 158, 0.411);
+    text-align: left;
+    padding-left: 15px;
 }
 
 .toggle-fav {
@@ -55,12 +47,8 @@ a:hover {
     cursor: pointer;
 }
 
-.list-item-title {
-    text-align: left;
-}
+.item-content {
 
-.list-item-price {
-    float: right;
 }
 
 .remove,
@@ -69,6 +57,7 @@ a:hover {
     opacity: 0.7;
     width: 100%;
     height: 100%;
+    transition: all 0.25s ease 0s;
   }
   .add:hover,
   .remove:hover {
@@ -83,6 +72,7 @@ a:hover {
     height: 35px;
     width: 4px;
     background-color: #333;
+    
     transition: all 0.5s ease 0s;
   }
   
@@ -98,7 +88,6 @@ a:hover {
 
 .add {
     background-color: rgba(97, 168, 97, 0.678);
-    transition: all 0.5s ease-out 0s;
 }
 
 .add:hover {
@@ -107,13 +96,13 @@ a:hover {
 
 .remove {
     background-color: rgba(201, 104, 104, 0.418);
-    transition: all 0.5s ease 0s;
 }
 
 .remove:hover {
     background-color: rgba(180, 75, 75, 0.719);
 }
 
-.fav-ctrl:active {
-    transform: scale(0.9);
+.add:active,
+.remove:active {
+    transform: scaleY(0.96);
 }
