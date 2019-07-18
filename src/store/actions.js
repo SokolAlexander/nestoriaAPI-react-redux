@@ -1,5 +1,6 @@
+import {getAndCheckData, checkListings} from './utils';
+
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=rent&listing_type=buy&place_name=';
-const RESULTS_PER_PAGE = 20;
 
 /**
  * create an action to dispatch when input value is changed 
@@ -78,13 +79,7 @@ export function submitFormAsync() {
 
         getAndCheckData(url, dispatch).then(data => {
             if (data) {
-                data.listings = data.listings.map((el, index) => {
-                    return {
-                        ...el,
-                        id: `${placeName}_${Date.now()}_${index}`,
-                        indexInFavs: -1
-                    }
-                });
+                data.listings = checkListings(data.listings, getState);
                 dispatch({
                     type: 'FETCHED_DATA',
                     payload: {
@@ -118,44 +113,11 @@ export function requestNextPage() {
 
         getAndCheckData(url, dispatch).then((data) => {
             if (data) {
-                data.listings = data.listings.map((el, index) => {
-                    return {
-                        ...el,
-                        id: `${getState().lastSearched}_
-                            ${Date.now()}_
-                            ${RESULTS_PER_PAGE*getState().currentPage + index}`,
-                        indexInFavs: -1
-                    }
-                });
+                data.listings = checkListings(data.listings, getState);
             dispatch({
                 type: 'FETCHED_DATA_NEXT',
                 payload: data.listings
             })}
         });
     }
-}
-
-/**
- * handles async operations
- * @param {String} url 
- * @param {function} dispatch 
- * @return {Promise}
- */
-function getAndCheckData(url, dispatch) {
-    return fetch(url)
-    .then(resp => {
-        return resp.json();
-    }).then(res => {
-        const result = res.response
-        if (!((result.application_response_code) === '100')) {
-            throw new Error(result.application_response_text);
-        }
-        return result;
-        }
-    ).catch(e => {
-        dispatch({
-            type: 'RESPONSE_ERROR',
-            payload: e.message
-        }); return null
-    });
 }
