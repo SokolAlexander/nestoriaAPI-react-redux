@@ -5,12 +5,13 @@
 
 .favButton {
   position: fixed;
-  z-index: 5900000000;
+  z-index: 590;
+  border-radius: 5px;
   top: 15px;
   left: 15px;
-  border: 2px solid blue;
+  border: 2px solid rgb(65, 57, 50);
   padding: 10px;
-  background-color: beige;
+  background-color: rgb(218, 202, 173);
 }
 
 .favButton:active {

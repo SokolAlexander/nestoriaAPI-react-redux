@@ -13,7 +13,7 @@ export function ShowMoreButton(props) {
                 if (!props.isOnLastPage) {
                     props.onShowMoreClick()
                     }
-                window.scrollTo(0, document.body.scrollHeight)}}>
+                }}>
             {props.isOnLastPage ? 'That\'s All Folks!' : 'Get more'}
             </div>
     )

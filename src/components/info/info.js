@@ -15,6 +15,7 @@ function Info(props) {
     const item = props.data;
     const favCtrlClassName = item.indexInFavs + 1 || item.indexInData + 1 ?
         'remove' : 'add';
+        console.log(item.indexInFavs + 1 || item.indexInData + 1);
     return (
         <div className='info-window'>
             <ItemHeader title={item.title} price={item.price_formatted} />
@@ -23,7 +24,6 @@ function Info(props) {
                                 <div>
                     <FavCtrl favCtrlClassName={favCtrlClassName}
                         onFavClick={() => {
-                            console.log(item.indexInFavs);
                             props.onFavClick(item.id);
                             console.log(item.indexInFavs);}}/>
                     </div>

@@ -15,7 +15,8 @@ export function List(props) {
                 {props.error && !props.isFetchingData &&
                     <Warning text={props.error}/>}
 
-                {!props.data[0] && <header>No data to show</header>}
+                {!props.data[0] && !props.isFetchingData && 
+                    <header>No data to show</header>}
 
                 {props.data[0] &&
                     <ListItems data={props.data}

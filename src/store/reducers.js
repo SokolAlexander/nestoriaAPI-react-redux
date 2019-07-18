@@ -1,10 +1,8 @@
-import {Dummy} from '../data';
-
 const initialState = {
     inputValue: 'chelsea',
-    data: Dummy,
+    data: [],
     favourites: [],
-    infoItem: {},
+    infoItem: {indexInData: -1},
     isFetching: false,
     currentPage: 0,
     totalPages: 100,
@@ -31,15 +29,16 @@ export default function reducer(state = initialState, action) {
         }
         case 'ADD_TO_FAVOURITES': return {
             ...state,
-            infoItem: {...state.infoItem, indexInFavs: state.favourites.length},//this might not work with BACK button, or opening links through url instead of clicking on link
+            infoItem: {...state.infoItem, indexInFavs: state.favourites.length},
             data: state.data.map((el,index) => {
-                return index === action.payload ?
+                return index === action.payload.index ?
                 {...el, indexInFavs: state.favourites.length} :
                 el;
             }),
             favourites: state.favourites.concat({
-                ...state.data[action.payload],
-                indexInData: action.payload
+                ...action.payload.item,
+                indexInData: action.payload.index,
+                indexInFavs: state.favourites.length
             })
         }
         case 'REMOVE_FROM_FAVOURITES':
@@ -58,12 +57,24 @@ export default function reducer(state = initialState, action) {
             isFetching: true,
             lastSearched: action.payload,
             currentPage: 1,
-            data: []
+            data: [],
+            favourites: state.favourites.map((el) => {
+                return {...el, indexInData: -1}
+            }),
         }
-        case 'FETCHED_DATA': return {
+        case 'FETCHED_DATA': 
+        const x = {
             ...state,
             data: state.data.concat(action.payload.data),
             totalPages: action.payload.totalPages,
+            isFetching: false,
+            error: null
+        }; console.log(x)
+        return {
+            ...state,
+            data: state.data.concat(action.payload.data),
+            totalPages: action.payload.totalPages,
+            infoItem: {...state.infoItem, indexInData: -1},
             isFetching: false,
             error: null
         }

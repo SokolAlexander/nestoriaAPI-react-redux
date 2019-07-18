@@ -32,10 +32,19 @@ export function toggleFavourites(id) {
             });
             return;
         };
+
+        const itemToAdd = indexInData + 1 ?
+            getState().data[indexInData] :
+            getState().infoItem;
+
         dispatch({
             type: 'ADD_TO_FAVOURITES',
-            payload: indexInData
-        })
+            payload: {
+                item: itemToAdd,
+                index: indexInData
+            }
+        });
+        return;
     }
 }
 

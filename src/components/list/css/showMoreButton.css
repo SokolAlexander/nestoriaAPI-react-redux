@@ -9,3 +9,7 @@
 .show-more:hover {
     background-color: rgb(245, 231, 205);
 }
+
+.show-more:active {
+    background-color: rgba(95, 83, 62, 0.39);
+}
