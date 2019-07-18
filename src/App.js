@@ -24,17 +24,21 @@ function App() {
         <Route exact={true} path="/" render={(props) => {
           return (
             <>
-              <Link to="/favourites" className="favButton">Open Favourites</Link>
+              <div className='nav-buttons'>
+              <Link to="/favourites" className="favButton">Favourites</Link>
+              </div>
               <Form />
               <SearchResults pathname={props.location.pathname} toggleFavClassName='add'/>
               </>
             )
           }} />
 
-        <Route exact={true} path="/favourites" render={(props) => {
+        <Route path="/favourites" render={(props) => {
             return (
               <>
-                <Link to='/' className='favButton'>Close Favourites</Link>
+                <div className='nav-buttons'>
+                  <Link to='/' className='favButton'>Home</Link>
+                </div>
                 <Favourites pathname={props.location.pathname} toggleFavClassName='remove'/>
               </>
             )
@@ -43,7 +47,10 @@ function App() {
         <Route path="/info/" render={(props) => {
           return (
             <>
-            <Link to='/' className='homeButton favButton'>Home</Link>
+            <div className='nav-buttons'>
+              <Link to='/' className='homeButton favButton'>Home</Link>
+              <Link to='/favourites' className='favButton'>Favourites</Link>
+            </div>
             <Info />
             </>
           )
