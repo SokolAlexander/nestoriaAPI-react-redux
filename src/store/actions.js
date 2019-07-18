@@ -1,5 +1,3 @@
-//import Dummy from '../data';
-
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://api.nestoria.co.uk/api?encoding=json&pretty=1&action=search_listings&country=uk&listing_type=rent&listing_type=buy&place_name=';
 const RESULTS_PER_PAGE = 20;
 
@@ -28,7 +26,7 @@ export function toggleFavourites(id) {
         if (indexInFavs + 1) {
             dispatch({
                 type: 'REMOVE_FROM_FAVOURITES',
-                payload: indexInFavs
+                payload: {indexInFavs, indexInData}
             });
             return;
         };
@@ -44,7 +42,6 @@ export function toggleFavourites(id) {
                 index: indexInData
             }
         });
-        return;
     }
 }
 

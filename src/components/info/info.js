@@ -1,5 +1,5 @@
 import React from 'react';
-import {FavCtrl} from '../list/favCtrl';
+import {FavCtrl} from '../favCtrl';
 import {Details} from './details';
 import {ItemHeader} from '../list/itemHeader';
 import {toggleFavourites} from '../../store/actions';
@@ -13,9 +13,8 @@ import './info.css';
  */
 function Info(props) {
     const item = props.data;
-    const favCtrlClassName = item.indexInFavs + 1 || item.indexInData + 1 ?
+    const favCtrlClassName = item.indexInFavs + 1 ?
         'remove' : 'add';
-        console.log(item.indexInFavs + 1 || item.indexInData + 1);
     return (
         <div className='info-window'>
             <ItemHeader title={item.title} price={item.price_formatted} />

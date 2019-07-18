@@ -1,8 +1,8 @@
 const initialState = {
-    inputValue: 'chelsea',
+    inputValue: '',
     data: [],
     favourites: [],
-    infoItem: {indexInData: -1},
+    infoItem: {},
     isFetching: false,
     currentPage: 0,
     totalPages: 100,
@@ -37,7 +37,6 @@ export default function reducer(state = initialState, action) {
             }),
             favourites: state.favourites.concat({
                 ...action.payload.item,
-                indexInData: action.payload.index,
                 indexInFavs: state.favourites.length
             })
         }
@@ -45,11 +44,11 @@ export default function reducer(state = initialState, action) {
             ...state,
             infoItem: {...state.infoItem, indexInFavs: -1},
             data: state.data.map((el, index) => {
-                return state.favourites[action.payload].indexInData === index ?
+                return action.payload.indexInData === index ?
                 {...el, indexInFavs: -1} :
                 el
             }),
-            favourites: state.favourites.filter((el, index) => index !== action.payload)
+            favourites: state.favourites.filter((el, index) => index !== action.payload.indexInFavs)
         }
         case 'START_REQUEST': return {
             ...state,
@@ -57,15 +56,15 @@ export default function reducer(state = initialState, action) {
             lastSearched: action.payload,
             currentPage: 1,
             data: [],
-            favourites: state.favourites.map((el) => {
-                return {...el, indexInData: -1}
-            }),
+            // favourites: state.favourites.map((el) => {
+            //     return {...el, indexInData: -1}
+            // }),
         }
         case 'FETCHED_DATA': return {
             ...state,
             data: state.data.concat(action.payload.data),
             totalPages: action.payload.totalPages,
-            infoItem: {...state.infoItem, indexInData: -1},
+            // infoItem: {...state.infoItem, indexInData: -1},
             isFetching: false,
             error: null
         }

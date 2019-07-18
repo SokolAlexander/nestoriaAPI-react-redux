@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Thumb} from './thumb';
-import {FavCtrl} from './favCtrl';
+import {FavCtrl} from '../favCtrl';
 import './css/item.css';
 import {ItemHeader} from './itemHeader';
 
@@ -11,7 +11,7 @@ import {ItemHeader} from './itemHeader';
  * @return {ReactComponent}
  */
 export function Item(props) {
-    const favCtrlClassName = props.data.indexInFavs + 1 || props.data.indexInData + 1 ?
+    const favCtrlClassName = props.data.indexInFavs + 1 ?
         'remove' : 'add';
     return (
         <div className="item-wrapper">
