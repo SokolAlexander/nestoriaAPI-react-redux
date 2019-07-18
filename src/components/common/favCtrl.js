@@ -1,5 +1,5 @@
 import React from 'react';
-import './favCtrl.css';
+import './css/favCtrl.css';
 
 /**
  * render a div to add an item to/remove an item from favourites

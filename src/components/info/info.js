@@ -1,7 +1,7 @@
 import React from 'react';
-import {FavCtrl} from '../favCtrl';
+import {FavCtrl} from '../common/favCtrl';
 import {Details} from './details';
-import {ItemHeader} from '../list/itemHeader';
+import {ItemHeader} from '../common/itemHeader';
 import {toggleFavourites} from '../../store/actions';
 import {connect} from 'react-redux';
 import './info.css';

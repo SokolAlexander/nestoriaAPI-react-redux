@@ -148,18 +148,14 @@ function getAndCheckData(url, dispatch) {
     }).then(res => {
         const result = res.response
         if (!((result.application_response_code) === '100')) {
-            dispatch({
-                type: 'RESPONSE_ERROR',
-                payload: result.application_response_text
-            });
-            return null
+            throw new Error(result.application_response_text);
         }
         return result;
         }
     ).catch(e => {
         dispatch({
             type: 'RESPONSE_ERROR',
-            payload: e.toString()
+            payload: e.message
         }); return null
     });
 }

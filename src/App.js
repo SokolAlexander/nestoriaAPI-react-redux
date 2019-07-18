@@ -21,34 +21,34 @@ function App() {
     <Provider store={store}>
     <div className="App">
       <Router>
-        <Route exact={true} path="/" render={(props) => {
+        <Route exact={true} path="/" render={() => {
           return (
             <>
               <div className='nav-buttons'>
-              <Link to="/favourites" className="favButton">Favourites</Link>
+                <Link to="/favourites" className="favButton">Favourites</Link>
               </div>
               <Form />
-              <SearchResults pathname={props.location.pathname} toggleFavClassName='add'/>
+              <SearchResults/>
               </>
             )
           }} />
 
-        <Route path="/favourites" render={(props) => {
+        <Route path="/favourites" render={() => {
             return (
               <>
                 <div className='nav-buttons'>
                   <Link to='/' className='favButton'>Home</Link>
                 </div>
-                <Favourites pathname={props.location.pathname} toggleFavClassName='remove'/>
+                <Favourites/>
               </>
             )
             }} />
 
-        <Route path="/info/" render={(props) => {
+        <Route path="/info/" render={() => {
           return (
             <>
             <div className='nav-buttons'>
-              <Link to='/' className='homeButton favButton'>Home</Link>
+              <Link to='/' className='favButton'>Home</Link>
               <Link to='/favourites' className='favButton'>Favourites</Link>
             </div>
             <Info />

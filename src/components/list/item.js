@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Thumb} from './thumb';
-import {FavCtrl} from '../favCtrl';
+import {FavCtrl} from '../common/favCtrl';
 import './css/item.css';
-import {ItemHeader} from './itemHeader';
+import {ItemHeader} from '../common/itemHeader';
 
 /**
  * renders one item of data
@@ -24,7 +24,6 @@ export function Item(props) {
             </Link>
             <FavCtrl favCtrlClassName={favCtrlClassName}
                 onFavClick={() => props.onFavClick(props.data.id)}/>
-
             </div>
     )
 }

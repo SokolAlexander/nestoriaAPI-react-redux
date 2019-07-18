@@ -55,22 +55,18 @@ export default function reducer(state = initialState, action) {
             isFetching: true,
             lastSearched: action.payload,
             currentPage: 1,
-            data: [],
-            // favourites: state.favourites.map((el) => {
-            //     return {...el, indexInData: -1}
-            // }),
+            data: []
         }
         case 'FETCHED_DATA': return {
             ...state,
             data: state.data.concat(action.payload.data),
             totalPages: action.payload.totalPages,
-            // infoItem: {...state.infoItem, indexInData: -1},
             isFetching: false,
             error: null
         }
         case 'START_REQUEST_NEXT': return {
             ...state,
-            currentPage: ++state.currentPage,
+            currentPage: state.currentPage + 1,
             isFetching: true
         }
         case 'FETCHED_DATA_NEXT': return {
