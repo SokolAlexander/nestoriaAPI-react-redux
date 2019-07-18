@@ -5,7 +5,6 @@ const RESULTS_PER_PAGE = 20;
  * @param {Object} obj2 
  */
 function compareObjects(obj1, obj2) {
-    debugger
     for (let key in obj1) {
         if (!(key in obj2 && obj1[key] === obj2[key])) return false
     }
@@ -48,7 +47,6 @@ export function checkListings(listings, getState) {
                 compareObjects(elInData, elInFav):
                 false;
         });
-        debugger
         const id = indexInFavs + 1 ?
             getState().favourites[indexInFavs].id :
             `${getState().lastSearched}_
