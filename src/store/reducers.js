@@ -41,8 +41,7 @@ export default function reducer(state = initialState, action) {
                 indexInFavs: state.favourites.length
             })
         }
-        case 'REMOVE_FROM_FAVOURITES':
-        return {
+        case 'REMOVE_FROM_FAVOURITES': return {
             ...state,
             infoItem: {...state.infoItem, indexInFavs: -1},
             data: state.data.map((el, index) => {
@@ -62,15 +61,7 @@ export default function reducer(state = initialState, action) {
                 return {...el, indexInData: -1}
             }),
         }
-        case 'FETCHED_DATA': 
-        const x = {
-            ...state,
-            data: state.data.concat(action.payload.data),
-            totalPages: action.payload.totalPages,
-            isFetching: false,
-            error: null
-        }; console.log(x)
-        return {
+        case 'FETCHED_DATA': return {
             ...state,
             data: state.data.concat(action.payload.data),
             totalPages: action.payload.totalPages,
